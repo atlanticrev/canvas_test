@@ -1,0 +1,32 @@
+{
+  "name": "canvas_test",
+  "version": "1.0.0",
+  "description": "canvas_drawing",
+  "main": "index.js",
+  "author": "Max Tarasyuk",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^6.2.2",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2"
+  },
+  "eslintConfig": {
+    "extends": "airbnb-base"
+  },
+  "dependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-es2017": "^6.24.1",
+    "babel-preset-latest": "^6.24.1"
+  },
+  "babel": {
+    "presets": [
+      "env",
+      {
+        "targets": {
+          "node": "current "
+        }
+      }
+    ]
+  }
+}
