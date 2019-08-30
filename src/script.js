@@ -58,12 +58,11 @@ Drawer.prototype.clear = function () {
 /*
 * Circle Class
 * */
-
 function Circle (
   context,
   x = random(50, 450),
   y = random(50, 450),
-  r = 50,
+  r = random(5, 20),
   dx = randomNegative(5, true),
   dy = randomNegative(5, true)
 ) {
@@ -72,6 +71,8 @@ function Circle (
   this.r = r;
   this.dx = dx;
   this.dy = dy;
+  this.initialVelocityX = dx;
+  this.initialVelocityY = dy;
   this.ctx = context;
 }
 
@@ -87,11 +88,15 @@ Circle.prototype.draw = function () {
 Circle.prototype.update = function () {
   // Отскакивание от краев canvas по оси x
   if (this.x + this.r > width || this.x - this.r < 0) {
+    // Изменение скорости (ускорение)
+    this.dx *= 1.05;
     this.dx = -this.dx;
   }
 
   // Отскакивание от краев canvas по оси y
   if (this.y + this.r > height || this.y - this.r < 0) {
+    // Изменение скорости (ускорение)
+    this.dy *= 1.05;
     this.dy = -this.dy;
   }
 
@@ -102,11 +107,17 @@ Circle.prototype.update = function () {
   return this;
 };
 
+let circles = [];
+
+for ( let i = 0; i < 150; i++ ) {
+  circles.push(new Circle(ctx));
+}
+
 /*
 * Work area
 * */
 let drawer = new Drawer(ctx);
-let circle = new Circle(ctx);
+// let circle = new Circle(ctx);
 
 // Главный цикл: кадр анимации вызывает функцию
 // requestAnimationFrame, а она планирует вызов фукнции
@@ -117,9 +128,11 @@ function animationStep () {
 
   drawer.clear();
 
-  circle
-    .update()
-    .draw();
+  circles.forEach(circle =>
+    circle
+      .update()
+      .draw()
+  );
 }
 
 animationStep();
