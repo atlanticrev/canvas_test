@@ -78,8 +78,8 @@ function Circle (
   x = random(50, 450),
   y = random(50, 450),
   r = random(5, 20),
-  dx = randomNegative(5, true),
-  dy = randomNegative(5, true),
+  dx = randomNegative(1, true),
+  dy = randomNegative(1, true),
   color
 ) {
   this.x = x;
@@ -133,7 +133,7 @@ Circle.prototype.update = function () {
   // Увеличиваем круги в области и до заданных размеров
   let
     maximumRadius = this.initialRadius * 3,
-    areaRadius = this.r;
+    areaRadius = 150;
 
   if ( Math.hypot( mouse.x - this.x, mouse.y - this.y ) < areaRadius
     && this.r <= maximumRadius) {
@@ -152,8 +152,8 @@ Circle.prototype.update = function () {
 // Создание окружностей
 let circles = [];
 
-for ( let i = 0; i < 1; i++ ) {
-  circles.push(new Circle(ctx, width / 2, height / 2, 50, 0, 5));
+for ( let i = 0; i < 250; i++ ) {
+  circles.push(new Circle(ctx));
 }
 
 window.addEventListener('mousemove', function (e) {
